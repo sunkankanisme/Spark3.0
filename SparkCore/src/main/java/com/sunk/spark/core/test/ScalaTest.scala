@@ -1,4 +1,4 @@
-package com.sunk.spark.core
+package com.sunk.spark.core.test
 
 object ScalaTest {
 

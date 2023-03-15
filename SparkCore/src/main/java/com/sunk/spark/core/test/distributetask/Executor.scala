@@ -1,5 +1,6 @@
-package com.sunk.spark.core.test
+package com.sunk.spark.core.test.distributetask
 
+import java.io.ObjectInputStream
 import java.net.ServerSocket
 
 /*
@@ -17,10 +18,15 @@ object Executor {
 
         // 3 获取客户端的消息
         val inputStream = client.getInputStream
-        val i = inputStream.read()
-        println("接收到客户端发送的数据：" + i)
+        val objectInputStream = new ObjectInputStream(inputStream)
+        val task: Task = objectInputStream.readObject().asInstanceOf[Task]
+
+        // 执行计算
+        val list: List[Int] = task.compute()
+        println("接收到 Driver 的计算任务，计算结果为：" + list)
 
         // 4 关闭资源
+        objectInputStream.close()
         inputStream.close()
         client.close()
         serverSocket.close()

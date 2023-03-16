@@ -17,6 +17,12 @@ object Spark02_RDD_File {
         val rdd = sc.textFile("SparkCore/src/main/resources/input/word.txt")
         rdd.collect().foreach(println)
 
+        // - wholeTextFiles 以整个文件为单位进行读取，读取的结果为元组（文件名，文件内容）
+        val rdd2 = sc.wholeTextFiles("SparkCore/src/main/resources/input/word.txt")
+        // (file:/D:/Workspace/Code/idea/Spark3.0/SparkCore/src/main/resources/input/word.txt,Hello Spark
+        // Hello Scala)
+        rdd2.collect().foreach(println)
+
         // 3 关闭环境
         sc.stop()
     }

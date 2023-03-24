@@ -1,4 +1,4 @@
-package com.sunk.spark.core.practice
+package com.sunk.spark.core.practice.demand1
 
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}

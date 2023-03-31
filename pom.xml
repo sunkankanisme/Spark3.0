@@ -10,6 +10,8 @@
     <packaging>pom</packaging>
     <modules>
         <module>SparkCore</module>
+        <module>SparkSQL</module>
+        <module>SparkStreaming</module>
     </modules>
 
     <properties>
@@ -17,5 +19,19 @@
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-core_2.12</artifactId>
+            <version>3.0.0</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>activation</artifactId>
+                    <groupId>javax.activation</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+    </dependencies>
 
 </project>

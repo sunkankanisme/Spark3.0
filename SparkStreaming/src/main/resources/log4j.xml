@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration>
+
+    <!-- Console output -->
+    <appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%-5p %d{MM-dd HH:mm:ss} %m  (%F:%L) \n"/>
+        </layout>
+
+        <filter class="com.sunk.spark.core.utils.Log4jFilter">
+        </filter>
+    </appender>
+
+    <appender name="FILE" class="org.apache.log4j.RollingFileAppender">
+        <param name="append" value="false"/>
+        <param name="maxFileSize" value="10MB"/>
+        <param name="maxBackupIndex" value="10"/>
+        <param name="file" value="C:\\Temp\\flink-log\\flink.log"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n"/>
+        </layout>
+    </appender>
+
+    <root>
+        <level value="info"/>
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE"/>
+    </root>
+
+</log4j:configuration>
+

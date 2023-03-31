@@ -7,7 +7,7 @@ object SparkHive {
     def main(args: Array[String]): Unit = {
         val session = SparkSession.builder()
                 .appName("SparkSQL")
-                .master("local[1]")
+                .master("local[]")
                 .enableHiveSupport()
                 .getOrCreate()
 

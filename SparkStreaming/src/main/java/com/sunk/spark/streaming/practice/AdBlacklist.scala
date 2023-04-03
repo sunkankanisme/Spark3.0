@@ -81,6 +81,10 @@ object AdBlacklist {
 
         ds.foreachRDD(rdd => {
             println(s"=== ${System.currentTimeMillis()}, ${rdd.count()} ===")
+
+            // rdd 的 foreach 方法是 RDD 的算子，逻辑在 Executor 端执行，如果需要使用 Driver 端的对象，则涉及到闭包操作，需要将数据进行序列化
+            // 数据库的连接对象是不能序列化的，所以直接放到 Driver 端初始化不好使
+            // 此处可以使用 rdd.foreachPartition() 进行处理
             rdd.foreach {
                 case ((day, user, ad), cnt) =>
                     if (cnt >= 30) {

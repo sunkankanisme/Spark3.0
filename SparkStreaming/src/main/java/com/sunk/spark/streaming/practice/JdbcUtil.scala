@@ -13,7 +13,8 @@ object JdbcUtil {
     def init(): DataSource = {
         val properties = new Properties()
         properties.setProperty("driverClassName", "com.mysql.jdbc.Driver")
-        properties.setProperty("url", "jdbc:mysql://hadoop101:3306/spark")
+        // 解决 Mysql 写入乱码问题
+        properties.setProperty("url", "jdbc:mysql://hadoop101:3306/spark?useUnicode=true&characterEncoding=UTF-8")
         properties.setProperty("username", "root")
         properties.setProperty("password", "000000")
         properties.setProperty("maxActive", "30")

@@ -39,7 +39,7 @@ object MockData {
         val areaList = ListBuffer[String]("华中", "华东", "华南", "华北")
         val cityList = ListBuffer[String]("北京", "上海", "广州", "深圳")
 
-        for (i <- 1 to 30) {
+        for (i <- 1 to random.nextInt(50)) {
             val userId = random.nextInt(6)
             val adId = random.nextInt(6)
             list.append(s"${System.currentTimeMillis()},${areaList(random.nextInt(4))},${cityList(random.nextInt(4))},$userId,$adId")

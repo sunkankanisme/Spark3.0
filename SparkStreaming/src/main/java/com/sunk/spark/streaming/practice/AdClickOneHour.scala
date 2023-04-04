@@ -42,8 +42,10 @@ object AdClickOneHour {
             x + y
         }, Seconds(60), Seconds(10))
 
-        reduceStream.print()
-
+        reduceStream.foreachRDD(rdd => {
+            val datas = rdd.sortByKey(ascending = true).collect()
+            println(">>>>> " + datas.mkString("Array(", ", ", ")"))
+        })
 
         ssc.start()
         ssc.awaitTermination()
